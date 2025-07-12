@@ -35,13 +35,12 @@ By the end of this session, you will:
 1. Understand speed testing principles (good, bad, ugly approaches)
 2. Know how to balance computational and cognitive efficiency
 3. Be familiar with R-Python integration using reticulate and arrow
-4. **Have resources to teach professional development practices**
 :::
 
 . . .
 
 ::: {style="font-size: 1.1em; color: #2E7D32;"}
-**Focus: Teaching development mindset and multilingual data science**
+**Focus: Resources to teach professional development practices**
 :::
 
 # Speed Testing {background-color="#0F4C81"}
@@ -173,17 +172,20 @@ profvis({
 
 ::: {.small}
 **Comprehensive Learning Materials:**
+
 - [Advanced R - Measuring Performance](https://adv-r.hadley.nz/perf-measure.html) - Hadley Wickham's comprehensive guide
 - [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/profiling-and-benchmarking.html) - Academic perspective
 - [USC Biostats R Handbook](https://uscbiostats.github.io/handbook/profile-benchmark.html) - Practical examples
 - [Advanced R Solutions](https://advanced-r-solutions.rbind.io/measuring-performance.html) - Problem-solving approach
 
 **Package Documentation:**
+
 - [microbenchmark Documentation](https://cran.r-project.org/web/packages/microbenchmark/index.html) - Accurate timing functions
 - [Appsilon Microbenchmark Guide](https://www.appsilon.com/post/r-microbenchmark) - Real-world examples
 - [RPubs Efficient R Code](https://rpubs.com/AmarKap/WritingEfficientCodeInR) - Student-friendly tutorial
 
 **Teaching Best Practices:**
+
 - Focus on median times, not minimum
 - Use realistic data sizes for benchmarks
 - Always profile before optimizing
@@ -196,11 +198,13 @@ profvis({
 
 ::: {.midi}
 **Computational Efficiency:**
+
 - How fast does the code run?
 - How much memory does it use?
 - Does it scale well with larger data?
 
 **Cognitive Efficiency:**
+
 - How easy is it to understand?
 - How quickly can someone modify it?
 - How likely are bugs to be introduced?
@@ -332,16 +336,19 @@ fast_approach <- function(data) {
 
 ::: {.small}
 **Readability and Maintainability (2025 Research):**
+
 - [Code Readability Research](https://www.researchgate.net/publication/390151582_The_Impact_of_Code_Readability_on_Software_Maintenance_efficiency_in_open_source_development) - 58% variance in maintenance efficiency
 - [Cognitive Load Studies](https://dl.acm.org/doi/10.1145/3196321.3196347) - Impact on developer comprehension
 - [Premature Optimization Pitfalls](https://eshman.pro/2025/03/the-pitfalls-of-premature-code-optimization-lessons-from-experience/) - 2025 best practices
 
 **Practical Guidelines:**
+
 - [Stack Overflow: Readability vs Performance](https://stackoverflow.com/questions/183201/should-a-developer-aim-for-readability-or-performance-first) - Community wisdom
 - [Code Quality Principles](https://zencoder.ai/blog/readability-maintainability-in-quality-code) - Professional standards
 - [LinkedIn: Balancing Optimization](https://www.linkedin.com/advice/3/how-do-you-balance-code-optimization-readability) - Industry perspectives
 
 **Teaching Materials:**
+
 - Focus on meaningful variable names and function design
 - Emphasize "readable first, optimize later" principle  
 - Use real examples showing readability impact on debugging
@@ -538,21 +545,25 @@ create_penguin_report <- function(data_source) {
 
 ::: {.small}
 **Official Documentation & Guides:**
+
 - [Arrow R-Python Integration](https://arrow.apache.org/docs/r/articles/python.html) - Official cross-language guide
 - [reticulate Documentation](https://rstudio.github.io/reticulate/) - Complete R-Python integration
 - [Danielle Navarro's Arrow Tutorial](https://blog.djnavarro.net/posts/2022-09-09_reticulated-arrow/) - Practical examples
 
 **Teaching-Focused Resources:**
+
 - [Atorus Research Multilingual Markdown](https://www.atorusresearch.com/multilingual-markdown-with-r-and-python-using-reticulate/) - Educational approach
 - [Microsoft Data Science Guide](https://medium.com/data-science-at-microsoft/collaborating-between-python-and-r-using-reticulate-25246b367957) - Team collaboration
 - [Flukeandfeather Introduction](https://flukeandfeather.com/posts/2023-03-17-intro-reticulate/) - Beginner-friendly tutorial
 
 **2025 Updates:**
+
 - reticulate 1.41 with uv backend for simplified setup
 - Improved Arrow integration for zero-copy data transfer
 - Growing emphasis on multilingual data science teams
 
 **Best Practices for Teaching:**
+
 - Start with simple data passing between languages
 - Emphasize when to use each language's strengths
 - Show collaborative workflow examples
@@ -571,6 +582,7 @@ create_penguin_report <- function(data_source) {
 5. **Week 5**: Advanced multilingual workflows
 
 **Assessment Strategies:**
+
 - Performance improvement portfolios
 - Code review exercises focusing on readability
 - Multilingual project implementations
@@ -581,16 +593,19 @@ create_penguin_report <- function(data_source) {
 
 ::: {.small}
 **Performance Optimization:**
+
 - [Advanced R Performance](https://adv-r.hadley.nz/perf-improve.html) - Comprehensive optimization guide
 - [R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf) - Common performance pitfalls
 - [Efficient R Programming](https://csgillespie.github.io/efficientR/) - Practical optimization strategies
 
 **Code Quality Teaching:**
+
 - [Clean Code Principles](https://www.oreilly.com/library/view/clean-code-a/9780136083238/) - Industry standards
 - [Code Quality Research](https://ieeexplore.ieee.org/document/8811910) - Academic perspectives
 - [Refactoring Techniques](https://refactoring.guru/) - Systematic improvement methods
 
 **Multilingual Data Science:**
+
 - [Python for R Users](https://rstudio-conf-2020.github.io/r-for-excel/) - Transition strategies
 - [Polyglot Data Science](https://www.manning.com/books/effective-data-science-infrastructure) - Team workflows
 - [Cross-Language Best Practices](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510) - Research software guidelines
@@ -600,36 +615,27 @@ create_penguin_report <- function(data_source) {
 
 ::: {.midi}
 **Performance Portfolio:**
+
 - Document before/after optimization with benchmarks
 - Explain trade-offs between performance and readability
 - Profile and optimize a provided slow function
 
 **Code Quality Review:**
+
 - Peer review exercises with readability rubrics
 - Refactor legacy code for better maintainability
 - Write functions with clear interfaces and documentation
 
 **Multilingual Projects:**
+
 - Implement analysis using both R and Python
 - Compare language-specific approaches to same problem
 - Create reproducible multilingual workflow documentation
 
 **Real-World Applications:**
+
 - Optimize code for large datasets
 - Debug performance issues in complex pipelines
 - Collaborate on mixed-language team projects
 :::
 
-## Activity: Design Your Developer Curriculum
-
-::: {.midi}
-**In small groups (15 minutes):**
-
-1. **Choose your focus**: Performance, readability, or multilingual skills?
-2. **Design progression**: How do concepts build on each other?
-3. **Select assessment methods**: How will you evaluate developer thinking?
-4. **Plan integration**: How does this connect to domain-specific content?
-5. **Consider constraints**: What are your students' programming backgrounds?
-
-**Be ready to share your approach and discuss challenges!**
-:::
