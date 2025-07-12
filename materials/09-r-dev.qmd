@@ -1,0 +1,635 @@
+---
+title: "Thinking Like a Developer"
+subtitle: "Performance, Efficiency, and Multi-Language Integration"
+format: 
+  revealjs:
+    footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
+    theme: [simple, styles.scss]
+    embed-resources: true
+    scrollable: true
+editor: source
+---
+
+## Why Developer Thinking?
+
+Moving from "scripts that work" to "professional code":
+
+::: {.incremental}
+- **Performance awareness**: Speed testing and optimization
+- **Code efficiency**: Computational AND cognitive considerations
+- **Multi-language fluency**: R + Python integration
+- **Professional standards**: Maintainable, readable code
+:::
+
+. . .
+
+::: {style="font-size: 1.2em; color: #0F4C81;"}
+Today: Teaching students to think like professional developers
+:::
+
+## Learning Objectives
+
+By the end of this session, you will:
+
+::: {.incremental}
+1. Understand speed testing principles (good, bad, ugly approaches)
+2. Know how to balance computational and cognitive efficiency
+3. Be familiar with R-Python integration using reticulate and arrow
+4. **Have resources to teach professional development practices**
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Focus: Teaching development mindset and multilingual data science**
+:::
+
+# Speed Testing {background-color="#0F4C81"}
+
+## The Good, Bad, and Ugly of Performance
+
+**The Good**: Systematic, meaningful optimization
+
+**The Bad**: Premature optimization without evidence
+
+**The Ugly**: Micro-optimizing at the expense of readability
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Teaching principle: Measure first, optimize second**
+:::
+
+## Essential Performance Testing Tools
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Install performance tools
+pak::pak(c("microbenchmark", "profvis", "bench", "palmerpenguins"))
+
+# Core performance packages
+library(microbenchmark)  # Micro-benchmarking
+library(profvis)         # Profiling and visualization
+library(bench)           # Modern benchmarking
+library(palmerpenguins)  # Example data
+```
+
+## The Good: Systematic Benchmarking
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Compare different approaches systematically
+microbenchmark(
+  base_approach = aggregate(body_mass_g ~ species, penguins, mean),
+  dplyr_approach = penguins %>% 
+    group_by(species) %>% 
+    summarize(mean_mass = mean(body_mass_g, na.rm = TRUE)),
+  data.table_approach = penguins[, .(mean_mass = mean(body_mass_g, na.rm = TRUE)), 
+                                by = species],
+  times = 100
+)
+```
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Teaching Value**: Students learn to compare approaches objectively with real data
+:::
+
+## The Bad: Premature Optimization
+
+```{r}
+#| eval: false
+#| echo: true
+
+# DON'T DO THIS: Optimizing before understanding the problem
+# Spending hours optimizing this:
+fast_but_unreadable <- function(x) {
+  .Call("C_fast_mean", x, PACKAGE = "mypackage")
+}
+
+# When this is fast enough and much clearer:
+readable_solution <- function(x) {
+  mean(x, na.rm = TRUE)
+}
+```
+
+::: {style="font-size: 0.9em; color: #D32F2F;"}
+**Anti-pattern**: Optimizing code that runs once per analysis and takes 0.001 seconds
+:::
+
+## The Ugly: Sacrificing Readability
+
+```{r}
+#| eval: false
+#| echo: true
+
+# UGLY: Unreadable "optimized" code
+ugly_fast <- penguins[!is.na(body_mass_g), 
+                     .(m=.Internal(mean(body_mass_g))), 
+                     keyby=.(s=species)]
+
+# GOOD: Clear, maintainable code that's fast enough
+clear_code <- penguins %>%
+  filter(!is.na(body_mass_g)) %>%
+  group_by(species) %>%
+  summarize(mean_mass = mean(body_mass_g))
+```
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Teaching Lesson**: Readability matters more than micro-optimizations
+:::
+
+## Profiling with profvis
+
+```{r}
+#| eval: false
+#| echo: true
+
+library(profvis)
+
+# Profile a more complex operation
+profvis({
+  # Simulate some data processing
+  results <- penguins %>%
+    filter(!is.na(bill_length_mm)) %>%
+    group_by(species, island) %>%
+    summarize(
+      mean_bill = mean(bill_length_mm),
+      sd_bill = sd(bill_length_mm),
+      .groups = "drop"
+    ) %>%
+    arrange(desc(mean_bill))
+})
+```
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Student Activity**: Profile their own code to identify real bottlenecks
+:::
+
+## Performance Testing Teaching Resources
+
+::: {.small}
+**Comprehensive Learning Materials:**
+- [Advanced R - Measuring Performance](https://adv-r.hadley.nz/perf-measure.html) - Hadley Wickham's comprehensive guide
+- [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/profiling-and-benchmarking.html) - Academic perspective
+- [USC Biostats R Handbook](https://uscbiostats.github.io/handbook/profile-benchmark.html) - Practical examples
+- [Advanced R Solutions](https://advanced-r-solutions.rbind.io/measuring-performance.html) - Problem-solving approach
+
+**Package Documentation:**
+- [microbenchmark Documentation](https://cran.r-project.org/web/packages/microbenchmark/index.html) - Accurate timing functions
+- [Appsilon Microbenchmark Guide](https://www.appsilon.com/post/r-microbenchmark) - Real-world examples
+- [RPubs Efficient R Code](https://rpubs.com/AmarKap/WritingEfficientCodeInR) - Student-friendly tutorial
+
+**Teaching Best Practices:**
+- Focus on median times, not minimum
+- Use realistic data sizes for benchmarks
+- Always profile before optimizing
+- Set performance targets before starting
+:::
+
+# Code Efficiency {background-color="#0F4C81"}
+
+## Two Types of Efficiency
+
+::: {.midi}
+**Computational Efficiency:**
+- How fast does the code run?
+- How much memory does it use?
+- Does it scale well with larger data?
+
+**Cognitive Efficiency:**
+- How easy is it to understand?
+- How quickly can someone modify it?
+- How likely are bugs to be introduced?
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Key insight: Cognitive efficiency often matters more than computational efficiency**
+:::
+
+## The Readability-Performance Trade-off
+
+```{r}
+#| eval: false
+#| echo: true
+
+# High readability, adequate performance
+readable_analysis <- penguins %>%
+  filter(!is.na(bill_length_mm), !is.na(body_mass_g)) %>%
+  mutate(bill_to_mass_ratio = bill_length_mm / body_mass_g) %>%
+  group_by(species) %>%
+  summarize(
+    mean_ratio = mean(bill_to_mass_ratio),
+    median_ratio = median(bill_to_mass_ratio),
+    n_observations = n()
+  )
+
+# Versus optimized but less readable version...
+```
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Teaching Strategy**: Start with readable code, optimize only when necessary
+:::
+
+## Cognitive Load Principles
+
+::: {.midi}
+**Reduce Mental Overhead:**
+
+1. **Meaningful names**: `calculate_species_averages()` not `calc_sp_avg()`
+2. **Consistent style**: Pick one approach and stick to it
+3. **Appropriate abstraction**: Functions for repeated logic
+4. **Clear structure**: Logical flow from input to output
+
+**Research-backed**: Poor code readability increases cognitive load and reduces maintenance efficiency by up to 58%
+:::
+
+## Good Cognitive Efficiency Example
+
+```{r}
+#| eval: false
+#| echo: true
+
+# GOOD: Clear intent, logical flow
+analyze_penguin_measurements <- function(data, measurement_var) {
+  data %>%
+    filter(!is.na({{measurement_var}})) %>%
+    group_by(species, island) %>%
+    summarize(
+      mean_value = mean({{measurement_var}}, na.rm = TRUE),
+      std_dev = sd({{measurement_var}}, na.rm = TRUE),
+      sample_size = n(),
+      .groups = "drop"
+    ) %>%
+    arrange(species, island)
+}
+
+# Usage is self-documenting
+bill_analysis <- analyze_penguin_measurements(penguins, bill_length_mm)
+mass_analysis <- analyze_penguin_measurements(penguins, body_mass_g)
+```
+
+## Bad Cognitive Efficiency Example
+
+```{r}
+#| eval: false
+#| echo: true
+
+# BAD: Unclear purpose, complex logic
+f <- function(d, v) {
+  d[!is.na(d[[deparse(substitute(v))]]), ] %>%
+    split(paste(d$species, d$island)) %>%
+    map_dfr(~ data.frame(
+      grp = .x$species[1], 
+      isl = .x$island[1],
+      m = mean(.x[[deparse(substitute(v))]]),
+      s = sd(.x[[deparse(substitute(v))]]),
+      n = nrow(.x)
+    ))
+}
+
+# What does this do? How do I use it?
+result <- f(penguins, bill_length_mm)  # Unclear!
+```
+
+## Teaching Computational Efficiency
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Show students the progression:
+
+# 1. Inefficient but clear
+slow_approach <- function(data) {
+  results <- data.frame()
+  for(species in unique(data$species)) {
+    subset_data <- data[data$species == species, ]
+    mean_mass <- mean(subset_data$body_mass_g, na.rm = TRUE)
+    results <- rbind(results, data.frame(species = species, mean_mass = mean_mass))
+  }
+  return(results)
+}
+
+# 2. Efficient and still clear
+fast_approach <- function(data) {
+  data %>%
+    group_by(species) %>%
+    summarize(mean_mass = mean(body_mass_g, na.rm = TRUE))
+}
+```
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Pedagogical Value**: Students see the evolution from working code to efficient code
+:::
+
+## Code Efficiency Teaching Resources
+
+::: {.small}
+**Readability and Maintainability (2025 Research):**
+- [Code Readability Research](https://www.researchgate.net/publication/390151582_The_Impact_of_Code_Readability_on_Software_Maintenance_efficiency_in_open_source_development) - 58% variance in maintenance efficiency
+- [Cognitive Load Studies](https://dl.acm.org/doi/10.1145/3196321.3196347) - Impact on developer comprehension
+- [Premature Optimization Pitfalls](https://eshman.pro/2025/03/the-pitfalls-of-premature-code-optimization-lessons-from-experience/) - 2025 best practices
+
+**Practical Guidelines:**
+- [Stack Overflow: Readability vs Performance](https://stackoverflow.com/questions/183201/should-a-developer-aim-for-readability-or-performance-first) - Community wisdom
+- [Code Quality Principles](https://zencoder.ai/blog/readability-maintainability-in-quality-code) - Professional standards
+- [LinkedIn: Balancing Optimization](https://www.linkedin.com/advice/3/how-do-you-balance-code-optimization-readability) - Industry perspectives
+
+**Teaching Materials:**
+- Focus on meaningful variable names and function design
+- Emphasize "readable first, optimize later" principle  
+- Use real examples showing readability impact on debugging
+- Teach systematic profiling before optimization
+:::
+
+# Multi-Language Integration {background-color="#0F4C81"}
+
+## Why R + Python Together?
+
+The modern data science workflow is increasingly multilingual:
+
+::: {.incremental}
+- **Best tool for the job**: Use R for statistics, Python for ML
+- **Team collaboration**: Different team members prefer different languages
+- **Ecosystem access**: Leverage both CRAN and PyPI packages
+- **Career preparation**: Industry expects multilingual skills
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Teaching philosophy: "It's not Python vs R, it's Python AND R"**
+:::
+
+## The reticulate + Arrow Stack
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Install multilingual tools
+pak::pak(c("reticulate", "arrow", "palmerpenguins"))
+
+# Setup Python environment
+library(reticulate)
+library(arrow)
+
+# Modern 2025 approach: automatic Python setup
+py_require(c("pandas", "numpy", "pyarrow"))
+```
+
+::: {.midi}
+**2025 Update**: reticulate 1.41 uses `uv` backend for simplified Python environment management
+:::
+
+## Efficient Data Transfer with Arrow
+
+```{r}
+#| eval: false
+#| echo: true
+
+# R: Prepare data as Arrow table
+library(arrow)
+penguins_arrow <- arrow_table(penguins)
+
+# Pass to Python (zero-copy!)
+py$penguins_data <- penguins_arrow
+
+# Python chunk processes data
+```
+
+```{python}
+#| eval: false
+#| echo: true
+
+# Python: Work with the data
+import pandas as pd
+
+# Convert from Arrow (still efficient)
+df = r.penguins_data.to_pandas()
+
+# Python-specific analysis
+from sklearn.cluster import KMeans
+# ... machine learning code ...
+
+# Return results to R
+processed_data = df.groupby('species').mean()
+```
+
+## Seamless Language Switching
+
+```{r}
+#| eval: false
+#| echo: true
+
+# R: Statistical modeling
+library(broom)
+
+model_results <- penguins %>%
+  filter(!is.na(bill_length_mm), !is.na(body_mass_g)) %>%
+  nest_by(species) %>%
+  mutate(
+    model = list(lm(body_mass_g ~ bill_length_mm, data = data)),
+    tidy_results = list(tidy(model))
+  )
+```
+
+```{python}
+#| eval: false
+#| echo: true
+
+# Python: Machine learning on same data
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+
+# Use the R data directly
+X = r.penguins[['bill_length_mm', 'bill_depth_mm']].dropna()
+y = r.penguins['body_mass_g'].dropna()
+
+# Train model
+rf_model = RandomForestRegressor()
+rf_model.fit(X, y)
+```
+
+## Teaching Multi-Language Workflows
+
+```{r}
+#| eval: false
+#| echo: true
+
+# R: Data preparation and exploration
+library(palmerpenguins)
+library(ggplot2)
+
+# Exploratory analysis in R
+penguins %>%
+  ggplot(aes(bill_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  labs(title = "Penguin Measurements by Species")
+
+# Pass cleaned data to Python for ML
+py$clean_penguins <- penguins %>%
+  filter(complete.cases(.)) %>%
+  select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, species)
+```
+
+```{python}
+#| eval: false
+#| echo: true
+
+# Python: Machine learning pipeline
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+
+# Use R's cleaned data
+df = r.clean_penguins
+X = df[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']]
+y = df['species']
+
+# Train classifier
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+clf = RandomForestClassifier()
+clf.fit(X_train, y_train)
+
+# Return predictions to R
+predictions = clf.predict(X_test)
+```
+
+## Real-World Integration Example
+
+```{r}
+#| eval: false
+#| echo: true
+
+# R: Business logic and reporting
+create_penguin_report <- function(data_source) {
+  # R handles data loading and initial processing
+  raw_data <- read_data(data_source)
+  
+  # Pass to Python for advanced analytics
+  py$raw_penguins <- raw_data
+  py_run_string("
+    import pandas as pd
+    from sklearn.preprocessing import StandardScaler
+    
+    # Advanced preprocessing in Python
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(raw_penguins.select_dtypes(include=[np.number]))
+    processed_data = raw_penguins.copy()
+  ")
+  
+  # Bring results back to R for reporting
+  processed_data <- py$processed_data
+  
+  # R handles visualization and reporting
+  create_final_report(processed_data)
+}
+```
+
+## Multi-Language Teaching Resources
+
+::: {.small}
+**Official Documentation & Guides:**
+- [Arrow R-Python Integration](https://arrow.apache.org/docs/r/articles/python.html) - Official cross-language guide
+- [reticulate Documentation](https://rstudio.github.io/reticulate/) - Complete R-Python integration
+- [Danielle Navarro's Arrow Tutorial](https://blog.djnavarro.net/posts/2022-09-09_reticulated-arrow/) - Practical examples
+
+**Teaching-Focused Resources:**
+- [Atorus Research Multilingual Markdown](https://www.atorusresearch.com/multilingual-markdown-with-r-and-python-using-reticulate/) - Educational approach
+- [Microsoft Data Science Guide](https://medium.com/data-science-at-microsoft/collaborating-between-python-and-r-using-reticulate-25246b367957) - Team collaboration
+- [Flukeandfeather Introduction](https://flukeandfeather.com/posts/2023-03-17-intro-reticulate/) - Beginner-friendly tutorial
+
+**2025 Updates:**
+- reticulate 1.41 with uv backend for simplified setup
+- Improved Arrow integration for zero-copy data transfer
+- Growing emphasis on multilingual data science teams
+
+**Best Practices for Teaching:**
+- Start with simple data passing between languages
+- Emphasize when to use each language's strengths
+- Show collaborative workflow examples
+- Practice debugging across language boundaries
+:::
+
+## Course Integration Strategies
+
+::: {.midi}
+**Progressive Complexity Approach:**
+
+1. **Week 1**: Performance awareness with microbenchmark
+2. **Week 2**: Code readability principles and refactoring
+3. **Week 3**: Systematic profiling with profvis
+4. **Week 4**: Basic R-Python data exchange
+5. **Week 5**: Advanced multilingual workflows
+
+**Assessment Strategies:**
+- Performance improvement portfolios
+- Code review exercises focusing on readability
+- Multilingual project implementations
+- Debugging exercises across languages
+:::
+
+## Professional Development for Instructors
+
+::: {.small}
+**Performance Optimization:**
+- [Advanced R Performance](https://adv-r.hadley.nz/perf-improve.html) - Comprehensive optimization guide
+- [R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf) - Common performance pitfalls
+- [Efficient R Programming](https://csgillespie.github.io/efficientR/) - Practical optimization strategies
+
+**Code Quality Teaching:**
+- [Clean Code Principles](https://www.oreilly.com/library/view/clean-code-a/9780136083238/) - Industry standards
+- [Code Quality Research](https://ieeexplore.ieee.org/document/8811910) - Academic perspectives
+- [Refactoring Techniques](https://refactoring.guru/) - Systematic improvement methods
+
+**Multilingual Data Science:**
+- [Python for R Users](https://rstudio-conf-2020.github.io/r-for-excel/) - Transition strategies
+- [Polyglot Data Science](https://www.manning.com/books/effective-data-science-infrastructure) - Team workflows
+- [Cross-Language Best Practices](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510) - Research software guidelines
+:::
+
+## Assessment Ideas for Developer Thinking
+
+::: {.midi}
+**Performance Portfolio:**
+- Document before/after optimization with benchmarks
+- Explain trade-offs between performance and readability
+- Profile and optimize a provided slow function
+
+**Code Quality Review:**
+- Peer review exercises with readability rubrics
+- Refactor legacy code for better maintainability
+- Write functions with clear interfaces and documentation
+
+**Multilingual Projects:**
+- Implement analysis using both R and Python
+- Compare language-specific approaches to same problem
+- Create reproducible multilingual workflow documentation
+
+**Real-World Applications:**
+- Optimize code for large datasets
+- Debug performance issues in complex pipelines
+- Collaborate on mixed-language team projects
+:::
+
+## Activity: Design Your Developer Curriculum
+
+::: {.midi}
+**In small groups (15 minutes):**
+
+1. **Choose your focus**: Performance, readability, or multilingual skills?
+2. **Design progression**: How do concepts build on each other?
+3. **Select assessment methods**: How will you evaluate developer thinking?
+4. **Plan integration**: How does this connect to domain-specific content?
+5. **Consider constraints**: What are your students' programming backgrounds?
+
+**Be ready to share your approach and discuss challenges!**
+:::
