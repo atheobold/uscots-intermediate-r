@@ -25,6 +25,8 @@ website:
             text: "Set-up & Installs"
          #- href: materials/03-styling-quarto-docs.qmd
          #    text: "Styling Quarto Documents"
+          - href: materials/04-more-complex-data.qmd
+            text: "More Complex Data"
        - text: Wednesday
          menu:
           - href: materials/05-quarto-projects-websites.qmd
