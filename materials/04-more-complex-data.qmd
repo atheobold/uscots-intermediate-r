@@ -1,0 +1,577 @@
+---
+title: "More Complex Data"
+subtitle: "Beyond CSV Files"
+format: 
+  revealjs:
+    footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
+    theme: [simple, styles.scss]
+    embed-resources: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+## Why Move Beyond CSV?
+
+Real-world data comes in many forms:
+
+::: {.incremental}
+- **Web data**: HTML tables, JSON APIs, XML feeds
+- **Large datasets**: Files too big for memory
+- **Structured databases**: Relational data with foreign keys
+- **Real-time data**: APIs that update continuously
+:::
+
+. . .
+
+::: {style="font-size: 1.2em; color: #0F4C81;"}
+Today: Tools and techniques for handling complex data sources
+:::
+
+## Learning Objectives
+
+By the end of this session, you will:
+
+::: {.incremental}
+1. Understand ethical web scraping principles and tools
+2. Know how to work with APIs and parse JSON/XML data
+3. Be familiar with high-performance data tools for large datasets
+4. Have experience connecting R to databases
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Focus on resources to teach these topics in your own courses**
+:::
+
+# Web Scraping {background-color="#0F4C81"}
+
+## Web Scraping Fundamentals
+
+Web scraping extracts data from websites programmatically
+
+::: {.incremental}
+- **rvest**: Core web scraping package for R
+- **polite**: Ethical scraping practices
+- **httr2**: HTTP requests and authentication
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #D32F2F;"}
+**Always check robots.txt and respect rate limits!**
+
+**Teaching Ethics:** Use [robots.txt checker](https://www.robotstxt.org/robotstxt.html) as classroom demo
+:::
+
+## Essential Web Scraping Packages
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Install required packages
+pak::pak(c("rvest", "polite", "httr2"))
+
+# Load libraries
+library(rvest)
+library(polite)
+library(dplyr)
+```
+
+. . .
+
+::: {.midi}
+**polite** ensures you:
+
+- Check robots.txt permissions
+- Respect rate limits automatically  
+- Cache requests to avoid redundancy
+:::
+
+## Polite Web Scraping Workflow
+
+```{r}
+#| eval: false
+#| echo: true
+
+# 1. Bow and introduce yourself
+session <- bow(
+  "https://example.com", 
+  user_agent = "Your Name <email@example.com>"
+)
+
+# 2. Scrape politely
+scraped_data <- scrape(session) %>%
+  html_elements("table") %>%
+  html_table()
+```
+
+. . .
+
+::: {.midi}
+This workflow automatically: 1) Checks robots.txt, 2) Introduces your scraper and 3) Respects crawl delays
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Tip:** Have students practice on [httpbin.org](https://httpbin.org/) first - it's designed for testing HTTP requests
+:::
+:::
+
+## Web Scraping Resources for Teaching
+
+::: {.small}
+**Essential Learning Materials:**
+
+- [R for Data Science (2e) - Web Scraping Chapter](https://r4ds.hadley.nz/webscraping.html) - Comprehensive beginner tutorial
+- [rvest Package Documentation](https://rvest.tidyverse.org/) - Official reference with examples
+- [Web Scraping the Polite Way](https://www.rostrum.blog/posts/2019-03-04-polite-webscrape/) - Ethics-focused tutorial
+- [ZenRows Complete Guide 2025](https://www.zenrows.com/blog/web-scraping-r) - Step-by-step practical guide
+- [UT Austin LibGuides](https://guides.lib.utexas.edu/web-scrapping/scraping-with-r) - Academic perspective
+- [Crime by Numbers Chapter 19](https://crimebythenumbers.com/webscraping-with-rvest.html) - Real-world examples
+
+**Teaching Resources:**
+- [Automated Web Scraping Workshop](https://resulumit.com/teaching/scrp_workshop.html) - Complete lesson plan
+- [Analytics Vidhya Hands-on Tutorial](https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/) - Student exercises
+:::
+
+# APIs & JSON/XML {background-color="#0F4C81"}
+
+## APIs: A Better Way to Get Data
+
+APIs (Application Programming Interfaces) provide:
+
+::: {.incremental}
+- **Structured access** to data
+- **Rate limiting** built-in
+- **Authentication** systems
+- **Documentation** and support
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Always prefer APIs over web scraping when available!**
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Student Exercise Idea:** Compare same data via API vs. scraping ([OpenWeather API](https://openweathermap.org/api) vs. weather websites)
+:::
+:::
+
+## Modern R API Tools
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Install if needed
+pak::pak(c("httr2", "jsonlite", "xml2"))
+
+# Modern HTTP client
+library(httr2)
+
+# JSON parsing
+library(jsonlite)
+
+# XML handling  
+library(xml2)
+```
+
+. . .
+
+::::: {.midi}
+**httr2** features:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Pipe-friendly syntax
+- Built-in retry logic
+:::
+
+::: {.column width="50%"}
+- Automatic request throttling
+- Better error handling than httr
+:::
+::::
+:::::
+
+## httr2 API Workflow
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Create and execute request
+response <- request("https://api.example.com/data") %>%
+  req_url_query(key = "your_api_key") %>%
+  req_perform()
+
+# Parse JSON response
+data <- response %>%
+  resp_body_json() %>%
+  jsonlite::fromJSON(flatten = TRUE)
+```
+
+## Working with JSON Data
+
+```{r}
+#| eval: true
+#| echo: true
+
+# Convert JSON to data frame
+json_data <- '{
+  "users": [
+    {"name": "Alice", "age": 25},
+    {"name": "Bob", "age": 30}
+  ]
+}'
+
+# Parse with jsonlite
+df <- jsonlite::fromJSON(json_data)$users
+print(df)
+
+# Great for teaching nested data concepts!
+```
+
+## API & JSON/XML Teaching Resources
+
+::: {.small}
+**Core Documentation & Tutorials:**
+
+- [httr2 Package Documentation](https://httr2.r-lib.org/) - Official reference
+- [Wrapping APIs with httr2](https://httr2.r-lib.org/articles/wrapping-apis.html) - Advanced techniques
+- [jsonlite: JSON APIs Vignette](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html) - JSON parsing examples
+- [Working with Web Data APIs (R-bloggers)](https://www.r-bloggers.com/2021/07/working-with-web-data-in-r-part-ii-apis/) - Conceptual overview
+
+**Student-Friendly Tutorials:**
+- [DataScience+ API Tutorial](https://datascienceplus.com/accessing-web-data-json-in-r-using-httr/) - Step-by-step guide
+- [RPubs REST API Tutorial](https://rpubs.com/ankc/480665) - Practical examples
+- [MockUp Blog JSON Parsing](https://themockup.blog/posts/2020-05-22-parsing-json-in-r-with-jsonlite/) - Real-world data
+
+**Upcoming Professional Development:**
+- [Hitting Web APIs with httr2 Workshop](https://www.r-bloggers.com/2025/02/hitting-web-apis-with-httr2-in-r-workshop/) (March 13, 2025)
+:::
+
+# Large Data Performance {background-color="#0F4C81"}
+
+## When Data Gets Big
+
+Traditional R tools struggle with:
+
+::: {.incremental}
+- **Files larger than RAM**
+- **Millions of rows** 
+- **Complex joins** across tables
+- **Repeated analysis** on same data
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #0F4C81;"}
+**Solution: Modern high-performance tools**
+:::
+
+## The Performance Trio
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Install if needed
+pak::pak(c("data.table", "arrow", "duckdb"))
+
+# High-performance data processing
+library(data.table)  # In-memory speed
+library(arrow)       # Columnar storage
+library(duckdb)      # In-process analytics
+```
+
+. . .
+
+::: {.midi}
+**Performance gains:**
+
+- **data.table**: 10-100x faster than base R
+- **arrow + duckdb**: Handle larger-than-memory data
+- **Combined**: Up to 20x faster pipelines
+:::
+
+## `data.table`
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Read large parquet file
+large_data <- arrow::open_dataset("huge_file.parquet")
+
+# data.table
+setDT(large_data)
+large_data[year == 2023, .(avg_value = mean(value)), by = category]
+```
+
+::: {.midi}
+**Extremely fast aggregation, grouped calculations, and filtering**
+:::
+
+::: {style="font-size: 0.9em; color: #666;"}
+Depending on student needs, `data.table` can be a very useful R development package:
+
+* careful dev cycle
+* concise syntax
+* efficient and fast in memory data
+
+Thousands of R packages use on `data.table` for these reasons!
+:::
+
+
+## Arrow + DuckDB Integration
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Read large parquet file
+large_data <- arrow::open_dataset("huge_file.parquet")
+
+# Query with DuckDB (SQL or dplyr syntax)
+result <- large_data %>%
+  arrow::to_duckdb() %>%
+  filter(year == 2023) %>%
+  group_by(category) %>%
+  summarise(avg_value = mean(value)) %>%
+  collect()
+```
+
+::: {.midi}
+**Zero-copy integration** between Arrow and DuckDB!
+:::
+
+## Why This Approach Works
+
+::: {.incremental}
+- **Arrow**: Columnar format, efficient I/O
+- **DuckDB**: In-process OLAP database
+- **Zero-copy**: No serialization overhead
+- **Familiar syntax**: Works with dplyr
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Result: 33.8 GB data analyzed in 16 GB RAM**
+:::
+
+## Large Data Teaching Resources
+
+::: {.small}
+**Technical Documentation:**
+
+- [The Raft](https://rdatatable-community.github.io/The-Raft/) - `data.table` community blog
+- [Arrow + DuckDB Integration Guide](https://duckdb.org/2021/12/03/duck-arrow.html) - Zero-copy concepts
+- [Arrow R Package Documentation](https://arrow.apache.org/docs/r/) - Complete reference
+- [DuckDB R Documentation](https://duckdb.org/docs/api/r) - SQL in R examples
+
+**Teaching-Focused Materials:**
+- [NCEAS Arctic Research Tutorial](https://learning.nceas.ucsb.edu/2025-04-arctic/sections/parquet-arrow.html) - Academic workshop
+- [Christophe Nicault's Tutorial](https://www.christophenicault.com/post/large_dataframe_arrow_duckdb/) - Step-by-step guide
+- [Thomas Mock's Bigger Data Tutorial](https://jthomasmock.github.io/bigger-data/) - Practical examples
+- [R/Medicine 2022 Slides](https://speakerdeck.com/higgi13425/big-data-with-arrow-and-duckdb) - Conference presentation
+
+**Performance Comparisons for Context:**
+- [Appsilon Performance Study](https://www.appsilon.com/post/r-data-processing-frameworks) - Benchmarking results
+- [R-bloggers Larger-than-Memory Guide](https://www.r-bloggers.com/2022/11/handling-larger-than-memory-data-with-arrow-and-duckdb/) - Practical approach
+:::
+
+# Databases {background-color="#0F4C81"}
+
+## Why Use Databases?
+
+Databases provide:
+
+::: {.incremental}
+- **Structured storage** with relationships
+- **ACID compliance** for data integrity
+- **Concurrent access** for teams
+- **Scalability** beyond single machines
+- **SQL ecosystem** and tools
+:::
+
+## R Database Ecosystem
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Install if needed
+pak::pak(c("DBI", "RSQLite", "RPostgreSQL", "RMySQL", "dbplyr"))
+
+# Core database interface
+library(DBI)
+
+# Specific database drivers
+library(RSQLite)    # SQLite (embedded)
+library(RPostgreSQL) # PostgreSQL
+library(RMySQL)     # MySQL/MariaDB
+
+# Database-aware dplyr
+library(dbplyr)
+```
+
+## Basic Database Workflow
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Connect to database
+con <- dbConnect(RSQLite::SQLite(), "mydata.db")
+
+# Write data to database
+dbWriteTable(con, "customers", customer_data)
+
+# Query with SQL
+result <- dbGetQuery(con, "
+  SELECT customer_id, SUM(amount) as total
+  FROM orders 
+  GROUP BY customer_id
+")
+
+# Always disconnect
+dbDisconnect(con)
+```
+
+## Database with dplyr Syntax
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Connect to table as dplyr object
+customers_tbl <- tbl(con, "customers")
+
+# Use familiar dplyr syntax
+summary <- customers_tbl %>%
+  filter(status == "active") %>%
+  group_by(region) %>%
+  summarise(avg_value = mean(lifetime_value)) %>%
+  collect()  # Execute and bring to R
+```
+
+::: {.midi}
+**dbplyr translates dplyr code to SQL automatically!**
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Teaching Moment:** Use `show_query()` to reveal the generated SQL - great for connecting R to SQL concepts
+:::
+:::
+
+## Database Teaching Resources
+
+::: {.small}
+**Core Textbook Materials:**
+
+- [R for Data Science (2e) - Databases Chapter](https://r4ds.hadley.nz/databases.html) - Student-friendly introduction
+- [DBI Package Documentation](https://dbi.r-dbi.org/) - Complete reference guide
+- [RSQLite Tutorial & Vignette](https://rsqlite.r-dbi.org/) - Embedded database examples
+
+**Teaching-Ready Tutorials:**
+- [R-Coder SQL Tutorial](https://r-coder.com/sql-r/) - Step-by-step with code
+- [SQL Docs R Tutorial](https://sqldocs.org/sqlite-database/sqlite-in-r/) - Interactive workflows
+- [Medium RStudio Database Guide](https://medium.com/r-evolution/work-with-sql-and-sqlite-databases-in-rstudio-posit-d7b65ffc106f) - IDE integration
+- [AWS R and Databases Tutorial](https://rstudio-pubs-static.s3.amazonaws.com/52614_1fa12c657ba7492092bd538205d7f02e.html) - Cloud perspective
+
+**Official Package Documentation:**
+- [RPostgreSQL on CRAN](https://cran.r-project.org/web/packages/RPostgreSQL/index.html)
+- [dbplyr Documentation](https://dbplyr.tidyverse.org/) - dplyr translation to SQL
+- [Databases using R (RStudio)](https://edgararuiz.github.io/db.rstudio.com/databases/sqlite.html) - Best practices
+:::
+
+## Summary: Your Complex Data Toolkit
+
+::: {.midi}
+| **Data Source** | **Primary Tools** | **Best For** |
+|:----------------|:------------------|:-------------|
+| **Web Pages** | rvest, polite | Structured web data |
+| **APIs** | httr2, jsonlite | Real-time, authenticated data |
+| **Large Files** | arrow, duckdb | Bigger-than-memory analysis |
+| **Databases** | DBI, dbplyr | Structured, relational data |
+:::
+
+. . .
+
+::: {style="font-size: 1.2em; color: #0F4C81;"}
+**Choose the right tool for your data source and size!**
+
+## Course Integration Strategies
+
+::: {.midi}
+**Scaffolded Approach (Recommended):**
+
+1. **Week 1-2:** Start with APIs (structured, documented)
+2. **Week 3-4:** Introduce ethical web scraping  
+3. **Week 5-6:** Scale up with large data tools
+4. **Week 7-8:** Databases for persistence and collaboration
+
+**Project-Based Learning:**
+- Students find their own data sources
+- Progress from simple to complex data types
+- Build cumulative portfolio of data acquisition skills
+:::
+
+## Additional Teaching Resources
+
+::: {.small}
+**Course Syllabi & Examples:**
+- [UC Davis STA 141C](https://github.com/nick-ulle/2022-sta141c/) - Complete web scraping course
+- [Data Science in a Box](https://datasciencebox.org/) - Includes web data modules
+
+**Practice Datasets & APIs:**
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/) - Fake REST API for testing
+- [httpbin.org](https://httpbin.org/) - HTTP request/response service
+- [OpenWeather API](https://openweathermap.org/api) - Real weather data with free tier
+- [REST Countries API](https://restcountries.com/) - Country data, no auth required
+
+**Ethics & Legal Resources:**
+- [robots.txt Specification](https://www.robotstxt.org/) - Official standard
+- [Web Scraping Ethics Guide](https://blog.apify.com/is-web-scraping-legal/) - Legal considerations
+- [API Terms of Service Examples](https://tosdr.org/) - Teaching about data use agreements
+:::
+
+## Assessment Ideas
+
+::: {.midi}
+**Formative Assessment:**
+- Compare API vs. scraping for same data source
+- Debug broken scraping code (robots.txt violations)
+- Optimize slow data processing with performance tools
+
+**Summative Projects:**
+- Build data pipeline from multiple sources
+- Create reproducible research workflow
+- Document data provenance and ethics considerations
+
+**Peer Review Components:**
+- Code review for ethical scraping practices
+- Performance benchmarking comparisons
+- API documentation quality assessment
+:::
+:::
+
+## Activity: Design Your Complex Data Project
+
+::: {.midi}
+**In small groups (15 minutes):**
+
+1. Choose a real research question from your field
+2. Identify what **type of complex data** you'd need:
+   - Web scraping target?
+   - Relevant APIs?
+   - Large dataset sources?
+   - Database requirements?
+3. Map out your **data pipeline** using today's tools
+4. Consider **ethical and performance** implications
+
+**Be ready to share your approach!**
+:::
