@@ -164,12 +164,12 @@ ggplot2 is designed to be extensible:
 ## Essential Extensions for Teaching
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Install key extensions
-pak::pak(c("patchwork", "gganimate", "ggtext", 
-           "ggforce", "ggh4x", "ggrepel", "palmerpenguins"))
+# pak::pak(c("patchwork", "gganimate", "ggtext", 
+#            "ggforce", "ggh4x", "ggrepel", "palmerpenguins"))
 
 # Core packages
 library(ggplot2)
@@ -182,22 +182,18 @@ library(ggtext)     # Enhanced text
 ## Patchwork: Combining Plots
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Create individual plots
-p1 <- penguins %>% 
-  ggplot(aes(bill_length_mm, body_mass_g, color = species)) + 
+p1 <- ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) + 
   geom_point()
 
-p2 <- penguins %>% 
-  ggplot(aes(species)) + 
+p2 <- ggplot(penguins, aes(species)) + 
   geom_bar()
 
 # Combine with operators
-p1 + p2           # Side by side
-p1 / p2           # Stacked
-(p1 + p2) / p3    # Complex layouts
+(p1 + p2) / p3    # Side by side and stacked 
 ```
 
 ::: {.midi}
@@ -213,8 +209,7 @@ p1 / p2           # Stacked
 library(gapminder)
 
 # Create animated plot
-gapminder %>%
-  ggplot(aes(gdpPercap, lifeExp, size = pop, color = continent)) +
+ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent)) +
   geom_point(alpha = 0.7) +
   scale_x_log10() +
   # Animation components
@@ -229,13 +224,12 @@ gapminder %>%
 ## ggtext: Professional Text Formatting
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 library(ggtext)
 
-penguins %>%
-  ggplot(aes(bill_length_mm, body_mass_g, color = species)) +
+ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) +
   geom_point() +
   labs(
     title = "Bill length vs. **Body mass**",
@@ -321,7 +315,7 @@ Interactive plots enable:
 #| echo: true
 
 # Install interactive packages
-pak::pak(c("plotly", "DT", "leaflet", "ggiraph"))
+# pak::pak(c("plotly", "DT", "leaflet", "ggiraph"))
 
 # Core interactive tools
 library(plotly)     # Interactive plots
@@ -337,12 +331,11 @@ library(ggiraph)    # Interactive ggplot2
 ## From ggplot2 to plotly
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Create ggplot
-p <- penguins %>%
-  ggplot(aes(bill_length_mm, body_mass_g, 
+p <- ggplot(penguins, aes(bill_length_mm, body_mass_g, 
              color = species, text = paste("Species:", species))) +
   geom_point(size = 3) +
   labs(title = "Bill Length vs. Body Mass")
@@ -358,7 +351,7 @@ ggplotly(p, tooltip = "text")
 ## Custom plotly Interactions
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Native plotly syntax
@@ -374,14 +367,13 @@ plot_ly(penguins, x = ~bill_length_mm, y = ~body_mass_g, color = ~species,
 ## ggiraph: Interactive ggplot2
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 library(ggiraph)
 
 # Add interactivity to ggplot2
-p <- penguins %>%
-  ggplot(aes(bill_length_mm, body_mass_g, 
+p <- ggplot(penguins, aes(bill_length_mm, body_mass_g, 
              tooltip = paste("Species:", species),
              data_id = species)) +
   geom_point_interactive(aes(color = species), size = 3) +

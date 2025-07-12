@@ -72,7 +72,7 @@ Web scraping extracts data from websites programmatically
 #| echo: true
 
 # Install required packages
-pak::pak(c("rvest", "polite", "httr2"))
+# pak::pak(c("rvest", "polite", "httr2"))
 
 # Load libraries
 library(rvest)
@@ -165,7 +165,7 @@ APIs (Application Programming Interfaces) provide:
 #| echo: true
 
 # Install if needed
-pak::pak(c("httr2", "jsonlite", "xml2"))
+# pak::pak(c("httr2", "jsonlite", "xml2"))
 
 # Modern HTTP client
 library(httr2)
@@ -281,7 +281,7 @@ Traditional R tools struggle with:
 #| echo: true
 
 # Install if needed
-pak::pak(c("data.table", "arrow", "duckdb"))
+# pak::pak(c("data.table", "arrow", "duckdb"))
 
 # High-performance data processing
 library(data.table)  # In-memory speed
@@ -409,7 +409,7 @@ Databases provide:
 #| echo: true
 
 # Install if needed
-pak::pak(c("DBI", "RSQLite", "RPostgreSQL", "RMySQL", "dbplyr"))
+# pak::pak(c("DBI", "RSQLite", "RPostgreSQL", "RMySQL", "dbplyr"))
 
 # Core database interface
 library(DBI)
