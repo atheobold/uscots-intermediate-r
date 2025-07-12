@@ -43,7 +43,7 @@ The focus of this workshop will not be training in intermediate R skills, but ra
 |               |                                    |                       |
 |:-------------:|:----------------------------------:|:---------------------:|
 |  8:30 - 8:45  |  Review, Reset & Share Project A   |       Everyone!       |
-|  8:45 - 9:30  |  Professional Data Visualization   |         Kelly         |
+|  8:45 - 9:30  |  Professional Data Visualization   |         Tyson         |
 | 9:30 - 10:00  |          Magic of Quarto           |        Allison        |
 | 10:00 - 10:15 |               Break                |                       |
 | 10:15 - 10:45 |         Quarto Dashboards          |        Allison        |
