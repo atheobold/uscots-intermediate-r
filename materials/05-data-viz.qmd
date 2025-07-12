@@ -65,17 +65,20 @@ Teaching visualization requires evaluating **both**:
 
 ::: {.midi}
 **Technical Accuracy:**
+
 - Appropriate chart type for data
 - Correct use of scales and axes
 - Accurate representation of relationships
 
 **Design Principles:**
+
 - Clear, informative titles and labels
 - Appropriate color choices and accessibility
 - Effective use of visual hierarchy
 - Minimal cognitive load
 
 **Communication:**
+
 - Clear message or insight
 - Appropriate for target audience
 - Context and interpretation provided
@@ -100,16 +103,19 @@ Teaching visualization requires evaluating **both**:
 
 ::: {.midi}
 **Formative Assessment:**
+
 - Sketch-to-code exercises (hand-drawn → ggplot2)
 - Peer critique sessions with guided questions
 - "Fix this plot" exercises with problematic examples
 
 **Summative Assessment:**
+
 - Portfolio of visualizations with process documentation
 - Before/after redesign projects
 - Group presentation of visualization choices
 
 **Self-Assessment Tools:**
+
 - Checklist for visualization quality
 - Reflection prompts about design decisions
 - Comparison with professional examples
@@ -119,16 +125,19 @@ Teaching visualization requires evaluating **both**:
 
 ::: {.small}
 **Rubric Examples:**
+
 - [Penn State Data Visualization Rubric](https://libraries.psu.edu/about/departments/research-informatics-and-publishing/data-learning-center/data-visualization-1) - Award judging criteria
 - [Georgetown Assessment Guide](https://guides.library.georgetown.edu/c.php?g=75874&p=490360) - Student evaluation framework
 - [ASA Poster Judging Rubric](https://www.amstat.org/asa/files/pdfs/EDU-PosterJudgingRubric.pdf) - Professional standards
 
 **Design Principle Resources:**
+
 - Alberto Cairo's "The Truthful Art" - Comprehensive visualization principles
 - Edward Tufte's principles - Classic design guidelines  
 - Claus Wilke's "Fundamentals of Data Visualization" - Modern, R-focused approach
 
 **Teaching Examples:**
+
 - [UMass Visualization Assessment](https://scholarworks.umass.edu/cgi/viewcontent.cgi?article=1073&context=librarian_pubs) - Academic research
 - [IU Visualization Rubric](https://scholarworks.iu.edu/dspace/bitstream/handle/2022/16814/VisualizationAssessmentRubric.pdf) - Complete framework
 :::
@@ -267,17 +276,20 @@ theme_set(my_theme)
 
 ::: {.small}
 **Comprehensive Guides:**
+
 - [Awesome ggplot2](https://github.com/erikgahner/awesome-ggplot2) - Curated list of extensions and tutorials
 - [ggplot2 Extensions Gallery](https://exts.ggplot2.tidyverse.org/) - Official showcase with examples
 - [Albert Rapp's Extension Guide](https://albert-rapp.de/posts/ggplot2-tips/20_ggplot_extensions/ggplot_extensions) - 5 powerful extensions tutorial
 - [Data Visualization Conservation Book](https://bookdown.org/gavinmasterson/dvfc/extensions-of-ggplot2.html) - Academic session on extensions
 
 **Package-Specific Resources:**
+
 - [Patchwork Documentation](https://patchwork.data-imaginist.com/) - Complete guide to plot composition
 - [gganimate Documentation](https://gganimate.com/) - Animation tutorials and examples
 - [ggtext Package Guide](https://wilkelab.org/ggtext/) - Enhanced text formatting
 
 **Teaching Materials:**
+
 - [Mode Analytics Extension Guide](https://mode.com/blog/r-ggplot-extension-packages/) - 12 extensions for more powerful visualizations
 - [InfoWorld ggplot Extensions](https://www.infoworld.com/article/2336125/12-ggplot-extensions-for-snazzier-r-graphics.html) - Practical examples
 - [Medical Research Extensions](https://bookdown.org/pdr_higgins/rmrwr/extensions-to-ggplot.html) - Domain-specific applications
@@ -387,21 +399,25 @@ girafe(ggobj = p)
 
 ::: {.small}
 **Comprehensive Learning:**
+
 - [Interactive Web-based Data Visualization with R](https://plotly-r.com/) - Complete plotly R guide
 - [DataCamp Plotly Course](https://www.datacamp.com/courses/interactive-data-visualization-with-plotly-in-r) - Structured learning path
 - [Plotly R Documentation](https://plotly.com/r/) - Official reference and examples
 
 **htmlwidgets Ecosystem:**
+
 - [htmlwidgets.org](http://www.htmlwidgets.org/) - Gallery of available packages
 - [Interactive Widgets in R](https://www.datanovia.com/learn/interactive/r/widgets.html) - Comprehensive guide
 - [University of Sheffield Guide](https://dataviz.shef.ac.uk/blog/27/01/2021/Interactive-Visualisations-In-R/) - Academic perspective
 
 **Teaching-Specific Resources:**
+
 - [GeeksforGeeks Plotly Tutorial](https://www.geeksforgeeks.org/interactive-charts-using-plotly-in-r/) - Step-by-step examples
 - [ggiraph Documentation](https://davidgohel.github.io/ggiraph/) - Interactive ggplot2 extensions
 - [Linking Multiple Widgets](https://plotly-r.com/linking-views-without-shiny.html) - Advanced techniques
 
 **Integration Examples:**
+
 - Saving and embedding HTML widgets in reports
 - Using interactive plots in Rmarkdown documents
 - Combining multiple widgets for dashboards
@@ -418,6 +434,7 @@ girafe(ggobj = p)
 4. **Week 7-8**: Interactive visualization with plotly
 
 **Assessment Progression:**
+
 - Start with static plot improvement exercises
 - Move to extension-based enhancement projects
 - Culminate with interactive storytelling assignments
@@ -428,16 +445,19 @@ girafe(ggobj = p)
 
 ::: {.small}
 **Visualization Theory & Principles:**
+
 - [Claus Wilke's "Fundamentals of Data Visualization"](https://clauswilke.com/dataviz/) - Modern, comprehensive guide
 - [Alberto Cairo's "The Truthful Art"](http://www.thefunctionalart.com/p/the-truthful-art-book.html) - Ethics and principles
 - [Edward Tufte's Works](https://www.edwardtufte.com/) - Classic visualization theory
 
 **R-Specific Advanced Techniques:**
+
 - [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) - Hadley Wickham's comprehensive guide
 - [R Graphics Cookbook](https://r-graphics.org/) - Practical solutions
 - [Data Visualization: A Practical Introduction](https://socviz.co/) - Sociology perspective with R
 
 **Teaching Methodology:**
+
 - [Data Science Education Resources](https://datasciencebox.org/) - Complete course framework
 - [Teaching Data Science](https://teachdatascience.com/) - Pedagogical approaches
 - [Journal of Statistics Education](https://www.tandfonline.com/toc/ujse20/current) - Academic research on teaching
@@ -447,17 +467,20 @@ girafe(ggobj = p)
 
 ::: {.midi}
 **Portfolio-Based Assessment:**
+
 - Document design process with sketches and iterations
 - Include both static and interactive versions
 - Reflect on design choices and improvements
 - Show progression from basic to advanced techniques
 
 **Peer Review Exercises:**
+
 - Students critique each other's work using provided rubrics
 - "Makeover Monday" style redesign challenges
 - Group discussions about effective vs. ineffective examples
 
 **Real-World Applications:**
+
 - Create visualizations for local organizations
 - Analyze and improve published visualizations
 - Present findings to non-technical audiences

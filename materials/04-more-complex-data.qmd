@@ -245,11 +245,13 @@ print(df)
 - [Working with Web Data APIs (R-bloggers)](https://www.r-bloggers.com/2021/07/working-with-web-data-in-r-part-ii-apis/) - Conceptual overview
 
 **Student-Friendly Tutorials:**
+
 - [DataScience+ API Tutorial](https://datascienceplus.com/accessing-web-data-json-in-r-using-httr/) - Step-by-step guide
 - [RPubs REST API Tutorial](https://rpubs.com/ankc/480665) - Practical examples
 - [MockUp Blog JSON Parsing](https://themockup.blog/posts/2020-05-22-parsing-json-in-r-with-jsonlite/) - Real-world data
 
 **Upcoming Professional Development:**
+
 - [Hitting Web APIs with httr2 Workshop](https://www.r-bloggers.com/2025/02/hitting-web-apis-with-httr2-in-r-workshop/) (March 13, 2025)
 :::
 
@@ -374,12 +376,14 @@ result <- large_data %>%
 - [DuckDB R Documentation](https://duckdb.org/docs/api/r) - SQL in R examples
 
 **Teaching-Focused Materials:**
+
 - [NCEAS Arctic Research Tutorial](https://learning.nceas.ucsb.edu/2025-04-arctic/sections/parquet-arrow.html) - Academic workshop
 - [Christophe Nicault's Tutorial](https://www.christophenicault.com/post/large_dataframe_arrow_duckdb/) - Step-by-step guide
 - [Thomas Mock's Bigger Data Tutorial](https://jthomasmock.github.io/bigger-data/) - Practical examples
 - [R/Medicine 2022 Slides](https://speakerdeck.com/higgi13425/big-data-with-arrow-and-duckdb) - Conference presentation
 
 **Performance Comparisons for Context:**
+
 - [Appsilon Performance Study](https://www.appsilon.com/post/r-data-processing-frameworks) - Benchmarking results
 - [R-bloggers Larger-than-Memory Guide](https://www.r-bloggers.com/2022/11/handling-larger-than-memory-data-with-arrow-and-duckdb/) - Practical approach
 :::
@@ -477,12 +481,14 @@ summary <- customers_tbl %>%
 - [RSQLite Tutorial & Vignette](https://rsqlite.r-dbi.org/) - Embedded database examples
 
 **Teaching-Ready Tutorials:**
+
 - [R-Coder SQL Tutorial](https://r-coder.com/sql-r/) - Step-by-step with code
 - [SQL Docs R Tutorial](https://sqldocs.org/sqlite-database/sqlite-in-r/) - Interactive workflows
 - [Medium RStudio Database Guide](https://medium.com/r-evolution/work-with-sql-and-sqlite-databases-in-rstudio-posit-d7b65ffc106f) - IDE integration
 - [AWS R and Databases Tutorial](https://rstudio-pubs-static.s3.amazonaws.com/52614_1fa12c657ba7492092bd538205d7f02e.html) - Cloud perspective
 
 **Official Package Documentation:**
+
 - [RPostgreSQL on CRAN](https://cran.r-project.org/web/packages/RPostgreSQL/index.html)
 - [dbplyr Documentation](https://dbplyr.tidyverse.org/) - dplyr translation to SQL
 - [Databases using R (RStudio)](https://edgararuiz.github.io/db.rstudio.com/databases/sqlite.html) - Best practices
@@ -524,16 +530,19 @@ summary <- customers_tbl %>%
 
 ::: {.small}
 **Course Syllabi & Examples:**
+
 - [UC Davis STA 141C](https://github.com/nick-ulle/2022-sta141c/) - Complete web scraping course
 - [Data Science in a Box](https://datasciencebox.org/) - Includes web data modules
 
 **Practice Datasets & APIs:**
+
 - [JSONPlaceholder](https://jsonplaceholder.typicode.com/) - Fake REST API for testing
 - [httpbin.org](https://httpbin.org/) - HTTP request/response service
 - [OpenWeather API](https://openweathermap.org/api) - Real weather data with free tier
 - [REST Countries API](https://restcountries.com/) - Country data, no auth required
 
 **Ethics & Legal Resources:**
+
 - [robots.txt Specification](https://www.robotstxt.org/) - Official standard
 - [Web Scraping Ethics Guide](https://blog.apify.com/is-web-scraping-legal/) - Legal considerations
 - [API Terms of Service Examples](https://tosdr.org/) - Teaching about data use agreements
@@ -543,16 +552,19 @@ summary <- customers_tbl %>%
 
 ::: {.midi}
 **Formative Assessment:**
+
 - Compare API vs. scraping for same data source
 - Debug broken scraping code (robots.txt violations)
 - Optimize slow data processing with performance tools
 
 **Summative Projects:**
+
 - Build data pipeline from multiple sources
 - Create reproducible research workflow
 - Document data provenance and ethics considerations
 
 **Peer Review Components:**
+
 - Code review for ethical scraping practices
 - Performance benchmarking comparisons
 - API documentation quality assessment
