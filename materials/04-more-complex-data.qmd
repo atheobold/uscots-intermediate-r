@@ -558,20 +558,3 @@ summary <- customers_tbl %>%
 - API documentation quality assessment
 :::
 :::
-
-## Activity: Design Your Complex Data Project
-
-::: {.midi}
-**In small groups (15 minutes):**
-
-1. Choose a real research question from your field
-2. Identify what **type of complex data** you'd need:
-   - Web scraping target?
-   - Relevant APIs?
-   - Large dataset sources?
-   - Database requirements?
-3. Map out your **data pipeline** using today's tools
-4. Consider **ethical and performance** implications
-
-**Be ready to share your approach!**
-:::
