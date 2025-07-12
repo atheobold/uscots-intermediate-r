@@ -29,6 +29,8 @@ website:
             text: "More Complex Data"
        - text: Wednesday
          menu:
+          - href: materials/05-data-viz.qmd
+            text: "Data Visualization"
           - href: materials/05-quarto-projects-websites.qmd
             text: "Introduction to Quarto Projects and Websites"
           - href: materials/06-quarto-dashboards.qmd
