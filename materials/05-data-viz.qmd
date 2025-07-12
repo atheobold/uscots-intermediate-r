@@ -6,6 +6,7 @@ format:
     footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
     theme: [simple, styles.scss]
     embed-resources: true
+    scrollable: true
 editor: source
 ---
 
@@ -63,7 +64,7 @@ Teaching visualization requires evaluating **both**:
 
 ## What Makes a "Good" Visualization?
 
-::: {.midi}
+::: {.small}
 **Technical Accuracy:**
 
 - Appropriate chart type for data
@@ -89,10 +90,10 @@ Teaching visualization requires evaluating **both**:
 ::: {.small}
 | **Criteria** | **Excellent (4)** | **Good (3)** | **Needs Work (2)** | **Poor (1)** |
 |:-------------|:------------------|:-------------|:-------------------|:-------------|
-| **Chart Type** | Clear match for data & message | Appropriate choice | Questionable fit | Wrong choice |
-| **Design** | Clear, polished, accessible | Good design principles | Some issues | Many problems |
-| **Message** | Clear, compelling insight | Good communication | Unclear message | No clear point |
-| **Process** | Shows iteration & reflection | Evidence of thinking | Some documentation | No process shown |
+| **Chart Type** | Match for data & message | Appropriate choice | Questionable fit | Wrong choice |
+| **Design** | Polished, clean, accessible | Good design principles | Some issues | Many problems |
+| **Message** | Compelling insight | Good communication | Unclear message | No clear point |
+| **Process** | Shows iteration/ reflection | Evidence of thinking | Some documentation | No process shown |
 :::
 
 ::: {style="font-size: 0.9em; color: #666;"}
@@ -101,7 +102,7 @@ Teaching visualization requires evaluating **both**:
 
 ## Assessment Strategies for Teaching
 
-::: {.midi}
+::: {.small}
 **Formative Assessment:**
 
 - Sketch-to-code exercises (hand-drawn → ggplot2)
@@ -168,7 +169,7 @@ ggplot2 is designed to be extensible:
 #| echo: true
 
 # Install key extensions
-# pak::pak(c("patchwork", "gganimate", "ggtext", 
+# pak::pak(c("patchwork", "gganimate", "ggtext", "plotly",
 #            "ggforce", "ggh4x", "ggrepel", "palmerpenguins"))
 
 # Core packages
@@ -177,6 +178,7 @@ library(palmerpenguins)
 library(patchwork)  # Combining plots
 library(gganimate)  # Animations  
 library(ggtext)     # Enhanced text
+library(plotly)     # interactive plots
 ```
 
 ## Patchwork: Combining Plots
@@ -191,6 +193,9 @@ p1 <- ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) +
 
 p2 <- ggplot(penguins, aes(species)) + 
   geom_bar()
+
+p3 <- ggplot(penguins, aes(body_mass_g)) + 
+  geom_histogram()
 
 # Combine with operators
 (p1 + p2) / p3    # Side by side and stacked 
