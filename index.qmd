@@ -30,8 +30,8 @@ The focus of this workshop will not be training in intermediate R skills, but ra
 
 |    Time     |               Topic               |       Presenter       |
 |:-----------:|:---------------------------------:|:---------------------:|
-| 1:00 - 1:15 |           Introductions           |       Everyone!       |
-| 1:15 - 1:45 |  Set-up, Installs & Group Norms   | Kelly, Tyson, Allison |
+| 1:00 - 1:15 |           [Introductions](materials/00-introductions.qmd)           |       Everyone!       |
+| 1:15 - 1:45 |  [Set-up, Installs & Group Norms](materials/01-setup-installs.qmd)   | Kelly, Tyson, Allison |
 | 1:45 - 2:15 |    Activity: Find Data Sources    |         You!          |
 | 2:15 - 2:30 |               Break               |                       |
 | 2:30 - 3:15 |    More Complex Data Pipelines    |         Kelly         |
@@ -44,9 +44,9 @@ The focus of this workshop will not be training in intermediate R skills, but ra
 |:-------------:|:----------------------------------:|:---------------------:|
 |  8:30 - 8:45  |  Review, Reset & Share Project A   |       Everyone!       |
 |  8:45 - 9:30  |  Professional Data Visualization   |         Kelly         |
-| 9:30 - 10:00  |          Magic of Quarto           |        Allison        |
+| 9:30 - 10:00  |          [Magic of Quarto](materials/05-quarto-projects-websites.qmd)           |        Allison        |
 | 10:00 - 10:15 |               Break                |                       |
-| 10:15 - 10:45 |         Quarto Dashboards          |        Allison        |
+| 10:15 - 10:45 |         [Quarto Dashboards](materials/06-quarto-dashboards.qmd)          |        Allison        |
 | 10:45 - 11:30 |               Shiny                |         Kelly         |
 | 11:30 - 12:00 | Activity: Create Your *Project B*  |         You!          |
 | 12:00 - 1:00  |            Lunch Break             |                       |

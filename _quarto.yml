@@ -23,18 +23,25 @@ website:
             text: "Introductions"
           - href: materials/01-setup-installs.qmd
             text: "Set-up & Installs"
-         #- href: materials/03-styling-quarto-docs.qmd
-         #    text: "Styling Quarto Documents"
+         #- href: materials/02-complex-pipeline.qmd
+         #    text: "More Complex Pipelines"
+         #- href: materials/03-complex-data.qmd
+         #    text: "More Complex Data"
        - text: Wednesday
          menu:
+         # - href: materials/04-professional-viz.qmd
+         #    text: "Professional Data Visualizations"
           - href: materials/05-quarto-projects-websites.qmd
             text: "Introduction to Quarto Projects and Websites"
           - href: materials/06-quarto-dashboards.qmd
             text: "Quarto Dashboards (Static & Dynamic)"
-         # - href: materials/06-version-control.qmd
-         #    text: "Introduction to Version Control"
-         #  - href: materials/07-publishing.qmd
-         #    text: "Publishing Your Materials"
+         # - href: materials/07-shiny.qmd
+         #    text: "Introduction to Shiny"
+         #  - href: materials/08-packages.qmd
+         #    text: "Package-based Teaching"
+         #  - href: materials/09-developer.qmd
+         #    text: "Thinking Like a Developer"
+         
        - text: Activities
          # menu: 
          #  - href: materials/02-activity-quarto-yaml.qmd
