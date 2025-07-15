@@ -8,8 +8,6 @@ format:
     embed-resources: true
     scrollable: true
 editor: source
-editor_options: 
-  chunk_output_type: console
 ---
 
 ## Why Move Beyond CSV?
@@ -53,16 +51,19 @@ Web scraping extracts data from websites programmatically
 ::: {.incremental}
 - **`rvest`**: Core web scraping package for R
 - **`polite`**: Ethical scraping practices
-- **`httr2`**: HTTP requests and authentication
+- **`httr2`**: HTTP requests and authentication (we'll get into this with APIs)
 :::
 
 . . .
 
-::: {style="font-size: 1.1em; color: #D32F2F;"}
+::: {style="font-size: 0.9em; color: #D32F2F;"}
 **Always check robots.txt and respect rate limits!**
 
-**Teaching Ethics:** Use [robots.txt checker](https://www.robotstxt.org/robotstxt.html) as classroom demo
+**Teaching Ethics:** Use [robots.txt checker](https://www.robotstxt.org/robotstxt.html) to review the "language" of this file
+
+**Example:** [Google's robot.txt](https://www.google.com/robots.txt)
 :::
+
 
 ## Essential Web Scraping Packages
 
@@ -70,10 +71,9 @@ Web scraping extracts data from websites programmatically
 #| eval: true
 #| echo: true
 
-# pak::pak(c("rvest", "polite", "httr2"))
+# pak::pak(c("rvest", "polite"))
 library(rvest)
 library(polite)
-library(dplyr)
 ```
 
 . . .
@@ -89,7 +89,7 @@ library(dplyr)
 ## Polite Web Scraping Workflow
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # 1. Bow and introduce yourself
@@ -126,10 +126,6 @@ scraped_data <- scrape(session) %>%
 
 ::: {.midi}
 This workflow automatically: 1) Checks robots.txt, 2) Introduces your scraper and 3) Respects crawl delays
-
-::: {style="font-size: 0.9em; color: #666;"}
-**Tip:** Have students practice on [httpbin.org](https://httpbin.org/) first - it's designed for testing HTTP requests
-:::
 :::
 
 ## Web Scraping Resources for Teaching
@@ -206,7 +202,7 @@ library(xml2)     # XML handling
 ## `httr2` API Workflow
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Create and execute request 
@@ -292,7 +288,7 @@ Traditional R tools struggle with:
 ## The Performance Trio
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Install if needed
@@ -321,10 +317,9 @@ library(duckdb)      # In-process analytics
 #| echo: true
 
 # Read large parquet file
-large_data <- arrow::open_dataset("huge_file.parquet")
+large_data <- data.table::fread(here::here("materials", "Data", "large_file.csv"))
 
 # data.table
-setDT(large_data)
 large_data[year == 2023, .(avg_value = mean(value)), by = category]
 ```
 
@@ -350,10 +345,10 @@ Thousands of R packages use on `data.table` for these reasons!
 #| echo: true
 
 # Read large parquet file
-large_data <- arrow::open_dataset("huge_file.parquet")
+huge_data <- arrow::open_dataset(here::here("materials", "Data", "huge_file.parquet"))
 
 # Query with DuckDB (SQL or dplyr syntax)
-result <- large_data %>%
+result <- huge_data %>%
   arrow::to_duckdb() %>%
   filter(year == 2023) %>%
   group_by(category) %>%
@@ -419,7 +414,7 @@ Databases provide:
 ## R Database Ecosystem
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Install if needed
@@ -440,7 +435,7 @@ library(dbplyr)
 ## Basic Database Workflow
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Connect to database
@@ -463,7 +458,7 @@ dbDisconnect(con)
 ## Database with `dplyr` Syntax
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Connect to table as dplyr object
@@ -481,7 +476,7 @@ summary <- customers_tbl %>%
 **`dbplyr` translates dplyr code to SQL automatically!**
 
 ::: {style="font-size: 0.9em; color: #666;"}
-**Teaching Moment:** Use `show_query()` to reveal the generated SQL - great for connecting R to SQL concepts
+**Teaching Tip:** Use `show_query()` to reveal the generated SQL - great for connecting R to SQL concepts
 :::
 :::
 
