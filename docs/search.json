@@ -746,7 +746,7 @@
     "href": "materials/09-package_workflow.html#create-the-demo-document-first",
     "title": "Package-based Workflow",
     "section": "Create the demo document first",
-    "text": "Create the demo document first\nInclude code that you hope will work properly…\n… and code you hope will error in a reasonable way."
+    "text": "Create the demo document first\nInclude code that you hope will work properly…\n\nsimple_linear_regression(data = mtcars,\n                         explanatory = \"gear\",\n                         response = \"mpg\")\n\n… and code you hope will error in a reasonable way.\n\nsimple_linear_regression(data = mtcars,\n                         explanatory = \"gear\",\n                         response = \"not a variable\")"
   },
   {
     "objectID": "materials/09-package_workflow.html#sketch-out-the-function",
@@ -823,7 +823,7 @@
     "href": "materials/09-package_workflow.html#speedmemory-tests",
     "title": "Package-based Workflow",
     "section": "Speed/memory tests",
-    "text": "Speed/memory tests"
+    "text": "Speed/memory tests\n\nbig_dat &lt;- #some large dataset\n  \nfor (url in submissions){\n  \n    unloadNamespace(\"example_skeleton_package\")\n    remove.packages(\"example_skeleton_package\", \".\")\n    \n    remotes::install_github(submissions)\n\n    library(example_skeleton_package)\n\n    benches &lt;- bench::mark(\n      slr = safely(simple_linear_regression)(big_dat, price, gearbox),\n      memory = FALSE,\n      check = FALSE,\n      time_unit = \"ms\",\n      min_time = Inf,\n      max_iterations = 20,\n      filter_gc = FALSE\n    ) %&gt;%\n      select(\n        expression, median\n      ) \n    \n}"
   },
   {
     "objectID": "materials/05-quarto-projects-websites.html#section",

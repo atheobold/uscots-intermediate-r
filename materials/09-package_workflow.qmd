@@ -93,6 +93,7 @@ Include code that you hope will work properly...
 
 ```{r}
 #| eval: false
+#| echo: true
 
 simple_linear_regression(data = mtcars,
                          explanatory = "gear",
@@ -103,6 +104,7 @@ simple_linear_regression(data = mtcars,
 
 ```{r}
 #| eval: false
+#| echo: true
 
 simple_linear_regression(data = mtcars,
                          explanatory = "gear",
