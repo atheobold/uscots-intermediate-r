@@ -78,7 +78,7 @@ Four grading elements to combine:
 
 1. Make a folder somewhere called "Package Assignment Practice" or similar.
 
-2. Run `usethis::create_package("YOUR PATH/Package Assignment Practice/example_skeleton_package")`.  This will open a new R Project.
+2. Run `usethis::create_package("YOUR PATH/Package Assignment Practice/exampleskeletonpackage")`.  This will open a new R Project.
 
 3. In the new project, run `usethis::use_r("simple_linear_regression")`
 
@@ -194,11 +194,19 @@ test_that("simple linear regression is correct", {
 
 * Change the unit test code to use a **different dataset** or **different variables**.
 
-# Activity: Be the student
+## Activity: Be the student
+
+* Fill in the missing pieces of the `simple_linear_regression` function.
+
+* Practice the package building workflow:
+
+    + Ctrl-shift-D to document
+    + Ctrl-shift-B to build
+    + Ctrl-shift-T to run unit tests
 
 ## Auto-grading with secret tests
 
-Open the script "testthat.R" ...
+Open the script "testthat.R" in your secret tests folder...
 
 ```
 library(testthat)
@@ -227,20 +235,20 @@ urls <- # list of student repos
 all_test_results <- tibble()
 all_time_results <- tibble()
 
-for (url in submissions){
+for (url in urls){
   
-    unloadNamespace("example_skeleton_package")
-    remove.packages("example_skeleton_package", ".")
+    unloadNamespace("exampleskeletonpackage")
+    remove.packages("exampleskeletonpackage", ".")
     
-    remotes::install_github(submissions)
+    remotes::install_github(url)
 
-    library(example_skeleton_package)
+    library(exampleskeletonpackage)
 
-    lr_test <- testthat::test_dir("./tests/testthat",
+    lr_test <- testthat::test_dir("./tests/",  ## path to your secret tests
                reporter = "minimal",
                stop_on_failure = FALSE)
       
-      ## save output however you prefer
+    ## format and save output however you prefer
     
 }
 ```
@@ -291,17 +299,18 @@ for (url in submissions){
 
 big_dat <- #some large dataset
   
-for (url in submissions){
+for (url in urls){
   
-    unloadNamespace("example_skeleton_package")
-    remove.packages("example_skeleton_package", ".")
+    unloadNamespace("exampleskeletonpackage")
+    remove.packages("exampleskeletonpackage", ".")
     
-    remotes::install_github(submissions)
+    remotes::install_github(url)
 
-    library(example_skeleton_package)
+    library(exampleskeletonpackage)
 
     benches <- bench::mark(
       slr = safely(simple_linear_regression)(big_dat, price, gearbox),
+      ## safely is important here in case student code errors
       memory = FALSE,
       check = FALSE,
       time_unit = "ms",

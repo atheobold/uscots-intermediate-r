@@ -46,11 +46,11 @@ website:
 
     right: 
       - icon: github
-        href: https://github.com/atheobold/uscots-intermediate-r
+        href: https://github.com/kbodwin/jsm-large-data
       
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2025, Kelly Bodwin, Tyson Barrett & Allison Theobold"
+    left: "&copy; Copyright 2025, Kelly Bodwin, Tyson Barrett & Jon Keane"
     background: "#D9E3E4"
 
 format:
