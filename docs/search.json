@@ -207,7 +207,7 @@
     "href": "materials/03-complex-data.html#create-your-project-a-data-analysis-assignment",
     "title": "More Complex Data",
     "section": "Create your Project A Data Analysis assignment",
-    "text": "Create your Project A Data Analysis assignment\nThings to include:\n\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific elements, such as “join at least two datasets” or “use a dataset of at least 10000 rows”?\nHow technical should the report be - is the audience other data scientists, or general public?\nHow will you grade successful but inefficient pipelines?\nHow will you make sure the pipeline really accomplishes what the report claims?"
+    "text": "Create your Project A Data Analysis assignment\nThings to include:\n\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific elements, such as “join at least two datasets” or “use a dataset of at least 10000 rows”?\nHow technical should the report be - is the audience other data scientists, or general public?\nHow will you grade successful but inefficient pipelines?\nHow will you make sure the pipeline really accomplishes what the report claims?\n\n\n\n\nUSCOTS Intermediate R Workshop"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#background-intro-level-rqs",
@@ -459,7 +459,7 @@
     "href": "materials/02-complex-pipeline.html#your-turn-5",
     "title": "Complex Data Pipelines",
     "section": "YOUR TURN",
-    "text": "YOUR TURN\n\nFor your dataset, come up with some research questions that require a complicated pipeline to address.\nSketch out the steps needed to answer a research question.\nJot down some ideas about how you would make transitional student questions out of these - e.g., which steps would you show and which would you leave blank?\n\n\n\n\n−+\n10:00"
+    "text": "YOUR TURN\n\nFor your dataset, come up with some research questions that require a complicated pipeline to address.\nSketch out the steps needed to answer a research question.\nJot down some ideas about how you would make transitional student questions out of these - e.g., which steps would you show and which would you leave blank?\n\n\n\n\n−+\n10:00\n\n\n\n\n\n\nUSCOTS Intermediate R Workshop"
   },
   {
     "objectID": "materials/07-stat-communication.html#the-9010-rule",
@@ -529,7 +529,7 @@
     "href": "materials/07-stat-communication.html#create-your-project-b-dashboard-assignment",
     "title": "Communicating Statistical Results",
     "section": "Create your Project B Dashboard Assignment",
-    "text": "Create your Project B Dashboard Assignment\n\n\nWho is the target audience that the student should address?\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific dashboard elements, such as interactivity?\nHow will you grade:\n\nthe design elements?\nthe technical elements?\nthe communication elements?"
+    "text": "Create your Project B Dashboard Assignment\n\n\nWho is the target audience that the student should address?\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific dashboard elements, such as interactivity?\nHow will you grade:\n\nthe design elements?\nthe technical elements?\nthe communication elements?\n\n\n\n\n\n\nTeaching Intermediate R"
   },
   {
     "objectID": "materials/04-professional-viz.html#why-professional-data-visualization",
@@ -697,7 +697,7 @@
     "href": "materials/04-professional-viz.html#professional-development-resources",
     "title": "Professional Data Visualization",
     "section": "Professional Development Resources",
-    "text": "Professional Development Resources\n\nVisualization Theory & Principles:\n\nClaus Wilke’s “Fundamentals of Data Visualization” - Modern, comprehensive guide\nAlberto Cairo’s “The Truthful Art” - Ethics and principles\nEdward Tufte’s Works - Classic visualization theory\n\nR-Specific Advanced Techniques:\n\nggplot2: Elegant Graphics for Data Analysis - Hadley Wickham’s comprehensive guide\nR Graphics Cookbook - Practical solutions\nData Visualization: A Practical Introduction - Sociology perspective with R\n\nTeaching Methodology:\n\nData Science Education Resources - Complete course framework\nTeaching Data Science - Pedagogical approaches\nJournal of Statistics Education - Academic research on teaching"
+    "text": "Professional Development Resources\n\nVisualization Theory & Principles:\n\nClaus Wilke’s “Fundamentals of Data Visualization” - Modern, comprehensive guide\nAlberto Cairo’s “The Truthful Art” - Ethics and principles\nEdward Tufte’s Works - Classic visualization theory\n\nR-Specific Advanced Techniques:\n\nggplot2: Elegant Graphics for Data Analysis - Hadley Wickham’s comprehensive guide\nR Graphics Cookbook - Practical solutions\nData Visualization: A Practical Introduction - Sociology perspective with R\n\nTeaching Methodology:\n\nData Science Education Resources - Complete course framework\nTeaching Data Science - Pedagogical approaches\nJournal of Statistics Education - Academic research on teaching\n\n\n\n\n\nUSCOTS Intermediate R Workshop"
   },
   {
     "objectID": "materials/09-package_workflow.html#why-a-package-workflow",
@@ -739,7 +739,7 @@
     "href": "materials/09-package_workflow.html#make-a-sandbox-for-yourself",
     "title": "Package-based Workflow",
     "section": "Make a sandbox for yourself",
-    "text": "Make a sandbox for yourself\n\nMake a folder somewhere called “Package Assignment Practice” or similar.\nRun usethis::create_package(\"YOUR PATH/Package Assignment Practice/example_skeleton_package\"). This will open a new R Project.\nIn the new project, run usethis::use_r(\"simple_linear_regression\")\nRun usethis::use_test(\"simple_linear_regression\")\nNew File &gt; Quarto &gt; slr_demo.qmd"
+    "text": "Make a sandbox for yourself\n\nMake a folder somewhere called “Package Assignment Practice” or similar.\nRun usethis::create_package(\"YOUR PATH/Package Assignment Practice/exampleskeletonpackage\"). This will open a new R Project.\nIn the new project, run usethis::use_r(\"simple_linear_regression\")\nRun usethis::use_test(\"simple_linear_regression\")\nNew File &gt; Quarto &gt; slr_demo.qmd"
   },
   {
     "objectID": "materials/09-package_workflow.html#create-the-demo-document-first",
@@ -777,11 +777,18 @@
     "text": "Secret Unit Tests\n\nMake a copy of the tests folder in your package.\nSave that copy outside the package folder, in your “Package Assignment Practice” folder.\nChange the unit test code to use a different dataset or different variables."
   },
   {
+    "objectID": "materials/09-package_workflow.html#activity-be-the-student",
+    "href": "materials/09-package_workflow.html#activity-be-the-student",
+    "title": "Package-based Workflow",
+    "section": "Activity: Be the student",
+    "text": "Activity: Be the student\n\nFill in the missing pieces of the simple_linear_regression function.\nPractice the package building workflow:\n\nCtrl-shift-D to document\nCtrl-shift-B to build\nCtrl-shift-T to run unit tests"
+  },
+  {
     "objectID": "materials/09-package_workflow.html#auto-grading-with-secret-tests",
     "href": "materials/09-package_workflow.html#auto-grading-with-secret-tests",
     "title": "Package-based Workflow",
     "section": "Auto-grading with secret tests",
-    "text": "Auto-grading with secret tests\nOpen the script “testthat.R” …\nlibrary(testthat)\nlibrary(example_skeleton_package)\n\ntest_check(\"example_skeleton_package\")\n… and run it!"
+    "text": "Auto-grading with secret tests\nOpen the script “testthat.R” in your secret tests folder…\nlibrary(testthat)\nlibrary(example_skeleton_package)\n\ntest_check(\"example_skeleton_package\")\n… and run it!"
   },
   {
     "objectID": "materials/09-package_workflow.html#working-with-github",
@@ -795,7 +802,7 @@
     "href": "materials/09-package_workflow.html#automation",
     "title": "Package-based Workflow",
     "section": "Automation",
-    "text": "Automation\nurls &lt;- # list of student repos\n\nall_test_results &lt;- tibble()\nall_time_results &lt;- tibble()\n\nfor (url in submissions){\n  \n    unloadNamespace(\"example_skeleton_package\")\n    remove.packages(\"example_skeleton_package\", \".\")\n    \n    remotes::install_github(submissions)\n\n    library(example_skeleton_package)\n\n    lr_test &lt;- testthat::test_dir(\"./tests/testthat\",\n               reporter = \"minimal\",\n               stop_on_failure = FALSE)\n      \n      ## save output however you prefer\n    \n}"
+    "text": "Automation\nurls &lt;- # list of student repos\n\nall_test_results &lt;- tibble()\nall_time_results &lt;- tibble()\n\nfor (url in urls){\n  \n    unloadNamespace(\"exampleskeletonpackage\")\n    remove.packages(\"exampleskeletonpackage\", \".\")\n    \n    remotes::install_github(url)\n\n    library(exampleskeletonpackage)\n\n    lr_test &lt;- testthat::test_dir(\"./tests/\",  ## path to your secret tests\n               reporter = \"minimal\",\n               stop_on_failure = FALSE)\n      \n    ## format and save output however you prefer\n    \n}"
   },
   {
     "objectID": "materials/09-package_workflow.html#function-designdevelopment",
@@ -823,7 +830,7 @@
     "href": "materials/09-package_workflow.html#speedmemory-tests",
     "title": "Package-based Workflow",
     "section": "Speed/memory tests",
-    "text": "Speed/memory tests\n\nbig_dat &lt;- #some large dataset\n  \nfor (url in submissions){\n  \n    unloadNamespace(\"example_skeleton_package\")\n    remove.packages(\"example_skeleton_package\", \".\")\n    \n    remotes::install_github(submissions)\n\n    library(example_skeleton_package)\n\n    benches &lt;- bench::mark(\n      slr = safely(simple_linear_regression)(big_dat, price, gearbox),\n      memory = FALSE,\n      check = FALSE,\n      time_unit = \"ms\",\n      min_time = Inf,\n      max_iterations = 20,\n      filter_gc = FALSE\n    ) %&gt;%\n      select(\n        expression, median\n      ) \n    \n}"
+    "text": "Speed/memory tests\n\nbig_dat &lt;- #some large dataset\n  \nfor (url in urls){\n  \n    unloadNamespace(\"exampleskeletonpackage\")\n    remove.packages(\"exampleskeletonpackage\", \".\")\n    \n    remotes::install_github(url)\n\n    library(exampleskeletonpackage)\n\n    benches &lt;- bench::mark(\n      slr = safely(simple_linear_regression)(big_dat, price, gearbox),\n      ## safely is important here in case student code errors\n      memory = FALSE,\n      check = FALSE,\n      time_unit = \"ms\",\n      min_time = Inf,\n      max_iterations = 20,\n      filter_gc = FALSE\n    ) %&gt;%\n      select(\n        expression, median\n      ) \n    \n}\n\n\n\n\nTeaching Intermediate R"
   },
   {
     "objectID": "materials/05-quarto-projects-websites.html#section",
@@ -907,7 +914,7 @@
     "href": "materials/05-quarto-projects-websites.html#how-would-you-integrate-websites-into-a-course",
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "How would you integrate websites into a course?",
-    "text": "How would you integrate websites into a course?\n\n\n\nProjects\n\nAre students already completing a project that includes R?\nWhy not transform this project into something they can publish?\nhttps://sta199-s24.github.io/project/description.html\n\n\n\n\n\nPersonal Websites\n\nGiving students a way to advertise themselves!\nhttps://mattbabb737.github.io/\nhttps://alisa-krasilnikov.github.io/\nhttps://lilypcook.github.io"
+    "text": "How would you integrate websites into a course?\n\n\n\nProjects\n\nAre students already completing a project that includes R?\nWhy not transform this project into something they can publish?\nhttps://sta199-s24.github.io/project/description.html\n\n\n\n\n\nPersonal Websites\n\nGiving students a way to advertise themselves!\nhttps://mattbabb737.github.io/\nhttps://alisa-krasilnikov.github.io/\nhttps://lilypcook.github.io\n\n\n\n\n\n\nTeaching Intermediate R"
   },
   {
     "objectID": "materials/10-wrapup.html#takeaways",
@@ -928,7 +935,7 @@
     "href": "materials/10-wrapup.html#find-us",
     "title": "Wrap-Up",
     "section": "Find us!",
-    "text": "Find us!\n\n\n\n\n\n\nAllison Theobold \n🌐 Github\n🔗 Website\n\nKelly Bodwin \n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon\n\nTyson Barrett \n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon"
+    "text": "Find us!\n\n\n\n\n\n\nAllison Theobold \n🌐 Github\n🔗 Website\n\nKelly Bodwin \n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon\n\nTyson Barrett \n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon\n\n\n\n\n\nTeaching Intermediate R"
   },
   {
     "objectID": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
@@ -1243,7 +1250,7 @@
     "href": "materials/01-setup-installs.html#activity-find-your-data-sources",
     "title": "Workshop Installs & Set-up",
     "section": "Activity: Find Your Data Sources",
-    "text": "Activity: Find Your Data Sources\n\nIn pairs, come up with a data context and a few broad research questions. Find online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities."
+    "text": "Activity: Find Your Data Sources\n\nIn pairs, come up with a data context and a few broad research questions. Find online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities.\n\n\n\n\nUSCOTS Intermediate R Workshop"
   },
   {
     "objectID": "materials/00-introductions.html#welcome",
@@ -1285,7 +1292,7 @@
     "href": "materials/00-introductions.html#expected-behavior",
     "title": "Teaching Intermediate R",
     "section": "Expected Behavior",
-    "text": "Expected Behavior\n\n\n\nModel and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.\nIn speech or conduct, do not insult or disparage other participants.\nBe conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians—noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.\nBe sensitive to indications that may suggest that individuals are feeling unwelcome.\n\n\n\n\n\n\n\nASA Code of Conduct"
+    "text": "Expected Behavior\n\nModel and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.\nIn speech or conduct, do not insult or disparage other participants.\nBe conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians—noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.\nBe sensitive to indications that may suggest that individuals are feeling unwelcome.\n\n\n\n\n\nUSCOTS Intermediate R Workshop\n\n\n\nASA Code of Conduct"
   },
   {
     "objectID": "materials/06-quarto-dashboards.html#section",
@@ -1411,7 +1418,7 @@
     "href": "materials/06-quarto-dashboards.html#how-are-all-of-these-pieces-connected",
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "How are all of these pieces connected?",
-    "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame"
+    "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame\n\n\n\n\n\n\nTeaching Intermediate R"
   },
   {
     "objectID": "materials/08-developer.html#why-developer-thinking",
@@ -1593,7 +1600,7 @@
     "href": "materials/08-developer.html#assessment-ideas-for-developer-thinking",
     "title": "Thinking Like a Developer",
     "section": "Assessment Ideas for Developer Thinking",
-    "text": "Assessment Ideas for Developer Thinking\n\nPerformance Portfolio:\n\nDocument before/after optimization with benchmarks\nExplain trade-offs between performance and readability\nProfile and optimize a provided slow function\n\nCode Quality Review:\n\nPeer review exercises with readability rubrics\nRefactor legacy code for better maintainability\nWrite functions with clear interfaces and documentation\n\nMultilingual Projects:\n\nImplement analysis using both R and Python\nCompare language-specific approaches to same problem\nCreate reproducible multilingual workflow documentation\n\nReal-World Applications:\n\nOptimize code for large datasets\nDebug performance issues in complex pipelines\nCollaborate on mixed-language team projects"
+    "text": "Assessment Ideas for Developer Thinking\n\nPerformance Portfolio:\n\nDocument before/after optimization with benchmarks\nExplain trade-offs between performance and readability\nProfile and optimize a provided slow function\n\nCode Quality Review:\n\nPeer review exercises with readability rubrics\nRefactor legacy code for better maintainability\nWrite functions with clear interfaces and documentation\n\nMultilingual Projects:\n\nImplement analysis using both R and Python\nCompare language-specific approaches to same problem\nCreate reproducible multilingual workflow documentation\n\nReal-World Applications:\n\nOptimize code for large datasets\nDebug performance issues in complex pipelines\nCollaborate on mixed-language team projects\n\n\n\n\n\nUSCOTS Intermediate R Workshop"
   },
   {
     "objectID": "index.html",
